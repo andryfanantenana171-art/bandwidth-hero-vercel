@@ -1,12 +1,11 @@
-function redirect(req, res) { 
+function redirect(req, res) {
+  if (res.headersSent) return res.end()
+  res.removeHeader('cache-control')
+  res.removeHeader('expires')
+  res.removeHeader('date')
+  res.removeHeader('etag')
   res.setHeader('location', encodeURI(req.params.url))
-    .removeHeader('cache-control')
-    .removeHeader('expires')
-    .removeHeader('date')
-    .removeHeader('etag')
-    .status(302)
-    .end()
-  return
+  res.status(302).end()
 }
 
 module.exports = redirect
