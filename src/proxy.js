@@ -1,3 +1,4 @@
+const https = require('https');
 const axios = require('axios');
 const { pick } = require('lodash');
 const shouldCompress = require('./shouldCompress');
